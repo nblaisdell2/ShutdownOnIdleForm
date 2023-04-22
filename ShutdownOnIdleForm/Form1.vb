@@ -85,6 +85,7 @@ Public Class frmTimer
 
         menu = New ContextMenuStrip
         menu.Items.Add(If(jConfig.isEnabled, "Disable", "Enable"), Nothing, AddressOf ToggleTimerEnabled)
+        menu.Items.Add("Quit", Nothing, AddressOf CloseProgram)
 
         UpdateTimer(mTimer)
         btnEnableToggle.Text = If(jConfig.isEnabled, "Disable Timer", "Enable Timer")
@@ -92,6 +93,11 @@ Public Class frmTimer
         StartTimer()
 
         Me.WindowState = FormWindowState.Minimized
+    End Sub
+
+    Private Sub CloseProgram()
+        Application.ExitThread()
+        Environment.Exit(0)
     End Sub
 
     Private Sub btnShutdown_Click(sender As Object, e As EventArgs) Handles btnShutdown.Click
