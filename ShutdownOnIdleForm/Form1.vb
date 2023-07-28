@@ -194,6 +194,11 @@ Public Class frmTimer
     Private Sub frmTimer_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         e.Cancel = True
         Me.WindowState = FormWindowState.Minimized
+
+        If e.CloseReason = CloseReason.WindowsShutDown Then
+            mTimer.SetShouldExit(True)
+            Application.Exit()
+        End If
     End Sub
 
     Private Sub frmTimer_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize
